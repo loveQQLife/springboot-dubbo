@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd http://code.alibabatech.com/schema/dubbo
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <!-- 应用名 -->
+    <dubbo:application name="demo-provider_test"/>
+    <!-- 连接到哪个本地注册中心 -->
+    <dubbo:registry id="test-demo" address="zookeeper://localhost:2181|zookeeper://localhost:2182"/>
+    <!-- 用dubbo协议在20880端口暴露服务 -->
+    <dubbo:protocol name="dubbo" port="28080"/>
+    <bean id="demoService" class="com.kreken.service.impl.DemoServiceImpl"></bean>
+    <!-- 声明需要暴露的服务接口 -->
+    <dubbo:service registry="test-demo" timeout="3000" interface="com.kreken.service.DemoService" ref="demoService"/>
+</beans>

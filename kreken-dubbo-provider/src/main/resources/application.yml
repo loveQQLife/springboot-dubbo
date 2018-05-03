@@ -1,0 +1,11 @@
+server:
+  port: 8181
+  servlet:
+    context-path: /   #根目录
+spring:
+  application:
+    name: kreken-dubbo-provider
+  security:
+    user:
+      name: user
+      password: 123456
